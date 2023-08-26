@@ -8,7 +8,7 @@ import Heading from "@/components/heading"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import {  MessageSquare } from "lucide-react"
+import {  Code } from "lucide-react"
 import { useForm } from "react-hook-form"
 
 import { formSchema } from "./cosntants"
@@ -25,7 +25,7 @@ import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
-const ConversationPage = () => {
+const code = () => {
 
     const router = useRouter();
 
@@ -45,7 +45,7 @@ const ConversationPage = () => {
           const userMessage: ChatCompletionRequestMessage = { role: "user", content: values.prompt };
           const newMessages = [...messages, userMessage];
           
-          const response = await axios.post('/api/conversation', { messages: newMessages });
+          const response = await axios.post('/api/code', { messages: newMessages });
           setMessages((current) => [ ...current, userMessage, response.data]);
           
           form.reset();
@@ -63,11 +63,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description = "Our most advanced conversation model."
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description = "It'll generate you the optimize best code"
+        icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
 
        />
        <div className=" px-4 lg:px-8">
@@ -98,7 +98,7 @@ const ConversationPage = () => {
                             <Input 
                             className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                             disabled={isloading}
-                            placeholder="How do I calculate the area of a triangle"
+                            placeholder="Create a button using html and CSS"
                             {...field}
                             />
                         </FormControl>
@@ -151,4 +151,4 @@ const ConversationPage = () => {
   )
 }
 
-export default ConversationPage;
+export default code;
